@@ -90,6 +90,9 @@
             padding: 15px; /* Aumenta a altura do botão */
             font-size: 18px; /* Aumenta o tamanho da fonte */
             background-color: #28a745; /* Cor verde para destaque */
+            display: block;
+            margin: 0 auto;
+            cursor: pointer; /* Altera o cursor para uma mãozinha */
         }
 
         #enviar:hover {
@@ -128,10 +131,12 @@
             margin-top: 20px;
             font-size: 12px;
             color: #888;
+            text-align: center;
         }
     </style>
     <!-- Adicionando Select2 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- Certifique-se de que o jQuery está incluído -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
 <body>
@@ -490,6 +495,27 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Inicializa o Select2 para o campo de exame com pesquisa por qualquer parte do texto
+            $('#exame').select2({
+                placeholder: "Selecione um exame",
+                allowClear: true, // permite limpar o campo
+                width: '100%',
+                matcher: function(params, data) {
+                    // Personalização da pesquisa para encontrar qualquer parte do texto
+                    if ($.trim(params.term) === '') {
+                        return data;
+                    }
+                    if (typeof data.text === 'undefined') {
+                        return null;
+                    }
+                    // Verifica se a palavra digitada está em qualquer posição do texto
+                    if (data.text.toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
+                    return null;
+                }
+            });
+    
             // Função para ordenar opções do select
             function ordenarSelect() {
                 const exameSelect = document.getElementById('exame');
@@ -508,28 +534,40 @@
     
             ordenarSelect(); // Chama a função para ordenar as opções
         });
-    
+        
         function adicionarPrevia() {
-            const form = document.getElementById("formExames");
-            const exameSelecionado = form.exame.value.split("|");
-            const unidadeSelecionada = form.unidade.value.split("|");
-    
-            // Criação da nova linha
-            const previewTable = document.getElementById("previewTable").getElementsByTagName("tbody")[0];
-            const newRow = previewTable.insertRow();
-            newRow.innerHTML = `
-                <td>${exameSelecionado[0]} - ${exameSelecionado[1]}</td>
-                <td>${form.dataColeta.value}</td>
-                <td>${unidadeSelecionada[0]}</td> <!-- Adicionando unidade selecionada -->
-                <td>${form.quantidade.value}</td>
-                <td>${form.dengue.value}</td> <!-- Adicionando valor de dengue -->
-                <td>${form.tuberculose.value}</td> <!-- Adicionando valor de tuberculose -->
-                <td><span class="delete-button" onclick="removerLinha(this)">Excluir</span></td>
-            `;
-    
-            // Reset do formulário
-            form.reset();
-        }
+    const form = document.getElementById("formExames");
+
+    // Verifica se todos os campos obrigatórios estão preenchidos
+    const exameSelecionado = form.exame.value;
+    const dataColeta = form.dataColeta.value;
+    const unidadeSelecionada = form.unidade.value;
+    const quantidade = form.quantidade.value;
+    const dengue = form.dengue.value;
+    const tuberculose = form.tuberculose.value;
+
+    if (!exameSelecionado || !dataColeta || !unidadeSelecionada || !quantidade || !dengue || !tuberculose) {
+        alert("Por favor, preencha todos os campos antes de adicionar à pré-visualização.");
+        return;
+    }
+
+    // Criação da nova linha
+    const previewTable = document.getElementById("previewTable").getElementsByTagName("tbody")[0];
+    const newRow = previewTable.insertRow();
+    newRow.innerHTML = `
+        <td>${exameSelecionado.split("|").join(" - ")}</td>
+        <td>${dataColeta}</td>
+        <td>${unidadeSelecionada.split("|")[0]}</td>
+        <td>${quantidade}</td>
+        <td>${dengue}</td>
+        <td>${tuberculose}</td>
+        <td><span class="delete-button" onclick="removerLinha(this)">Excluir</span></td>
+    `;
+
+    // Reset do formulário
+    form.reset();
+    $('#exame').val(null).trigger('change'); // Reseta o campo Select2
+}
     
         function removerLinha(element) {
             const row = element.parentNode.parentNode;
