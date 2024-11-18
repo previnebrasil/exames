@@ -7,7 +7,7 @@
 
 /* Estilo do Body - Imagem de fundo para o conteúdo */
 body {
-  background-image: url('img/back.jpg'); /* Caminho para a imagem de fundo */
+  background-image: url('/back.jpg'); /* Caminho para a imagem de fundo */
   background-size: cover; /* Faz com que a imagem cubra toda a área da tela */
   background-position: center; /* Centraliza a imagem */
   background-attachment: fixed; /* Faz a imagem de fundo não se mover ao rolar a página */
