@@ -7,18 +7,18 @@ const textBox = document.querySelector('.text-box'); // Caixa de texto
 const closeButton = document.querySelector('.text-box .close'); // Botão de fechar (X)
 
 const humanExpressions = [
-    { img: './img/drink.jpg', text: 'Estou com sede' },
-    { img: './img/food.jpg', text: 'Estou com fome' },
-    { img: './img/tired.jpg', text: 'Estou cansado' },
-    { img: './img/hurt.jpg', text: 'Estou machucado' },
-    { img: './img/happy.jpg', text: 'Estou feliz' },
-    { img: './img/angry.jpg', text: 'Estou com raiva' },
-    { img: './img/sad.jpg', text: 'Estou triste' },
-    { img: './img/scared.jpg', text: 'Estou assustado' },
-    { img: './img/outside.jpg', text: 'Quero ir lá fora' },
-    { img: './img/home.jpg', text: 'Quero ir para casa' },
-    { img: './img/school.jpg', text: 'Quero ir para a escola' },
-    { img: './img/grandma.jpg', text: 'Quero ver a vovó' },
+    { img: './drink.jpg', text: 'Estou com sede' },
+    { img: './food.jpg', text: 'Estou com fome' },
+    { img: './tired.jpg', text: 'Estou cansado' },
+    { img: './hurt.jpg', text: 'Estou machucado' },
+    { img: './happy.jpg', text: 'Estou feliz' },
+    { img: './angry.jpg', text: 'Estou com raiva' },
+    { img: './sad.jpg', text: 'Estou triste' },
+    { img: './scared.jpg', text: 'Estou assustado' },
+    { img: './outside.jpg', text: 'Quero ir lá fora' },
+    { img: './home.jpg', text: 'Quero ir para casa' },
+    { img: './school.jpg', text: 'Quero ir para a escola' },
+    { img: './grandma.jpg', text: 'Quero ver a vovó' },
 ];
 
 // Carregar as vozes disponíveis no SpeechSynthesis
