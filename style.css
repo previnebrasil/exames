@@ -7,7 +7,7 @@
 
 /* Estilo do Body - Imagem de fundo para o conteúdo */
 body {
-  background-image: url('/back.jpg'); /* Caminho para a imagem de fundo */
+  background-image: url('./back.jpg'); /* Atualize o caminho para a imagem de fundo */
   background-size: cover; /* Faz com que a imagem cubra toda a área da tela */
   background-position: center; /* Centraliza a imagem */
   background-attachment: fixed; /* Faz a imagem de fundo não se mover ao rolar a página */
@@ -52,7 +52,6 @@ body {
 .company-name {
   font-size: 16px; /* Diminuí o tamanho para ficar mais compacto */
   color: #fff;
-  text-transform: flex;
   font-weight: 600;
   letter-spacing: 1px;
 }
@@ -117,10 +116,10 @@ select {
 /* Caixa de texto para inserir texto */
 .text-box {
   display: none;
-  position: absolute;
-  top: 30%;
+  position: fixed; /* Alterado para 'fixed' para manter o modal fixo na tela */
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); /* Centralização eficiente */
   background-color: rgba(26, 34, 50, 0.8); /* Fundo escuro com opacidade */
   color: #fff;
   padding: 20px;
