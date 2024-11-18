@@ -12,7 +12,8 @@
     <!-- Seção Superior - Logo, Nome da Empresa e Nome do App -->
     <header class="header">
       <div class="header-left">
-        <img src="./logo.png" alt="Logo iNFO SUS" class="logo">
+        <!-- Atualize o caminho da imagem do logo, se necessário -->
+        <img src="./logo.png" alt="Logo da empresa iNFO SUS Marília" class="logo">
         <div class="company-name">iNFO SUS MARÍLIA</div>
       </div>
       <div class="app-title">ComuniKIDS: Comunicação e Voz para Todos</div>
@@ -21,16 +22,18 @@
     <!-- Seção de controle de voz -->
     <div class="voice-controls">
       <h3>Escolha o tipo de voz</h3>
-      <select></select>
-      <button class="btn btn-toggle">Inserir texto</button>
+      <select aria-label="Selecione a voz"></select>
+      <button class="btn btn-toggle" aria-label="Mostrar caixa de texto">Inserir texto</button>
     </div>
 
+    <!-- Caixa de texto, inicialmente oculta -->
     <div class="text-box">
-      <div class="close"><i class="fas fa-times"></i></div>
-      <textarea placeholder="Insira o texto a ser lido..."></textarea>
-      <button class="btn" id="read">Ler texto</button>
+      <div class="close" aria-label="Fechar caixa de texto"><i class="fas fa-times"></i></div>
+      <textarea placeholder="Insira o texto a ser lido..." aria-label="Texto a ser lido"></textarea>
+      <button class="btn" id="read" aria-label="Ler o texto">Ler texto</button>
     </div>
     
+    <!-- Main content onde as expressões serão geradas -->
     <main></main>
   </div>
 
